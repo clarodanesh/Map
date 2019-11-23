@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "CMap.h"
 
 using namespace std;
@@ -34,6 +33,9 @@ public:
 	}
 };
 
+void hello() {
+	cout << "hello" << endl;
+}
 
 
 int main() {
@@ -74,7 +76,7 @@ int main() {
 	cout << endl << endl;
 	cout << check->key;*/
 
-	CMap<int>* i = new CMap<int>();
+	/*CMap<int>* i = new CMap<int>();
 	i->insert(1, 1);
 	i->insert(2, 2);
 	i->get(1);
@@ -82,7 +84,64 @@ int main() {
 
 	for (int a = 0; a < 10; a++) {
 		i->insert(a, 15);
-	}
+	}*/
+
+	/*CMap<string>* i = new CMap<string>();
+	i->insert("danesh", "iqbal");
+	i->insert("toby", "maguire");
+	i->get("toby");
+	i->insert("cristiano", "ronaldo");*/
+
+	/*CMap<char>* i = new CMap<char>();
+	i->insert('a', 'b');
+	i->insert('c', 'd');
+	i->get('a');
+	i->insert('e', 'f');*/
+
+	/*CMap<float>* i = new CMap<float>();
+	i->insert(1.0f, 1.5f);
+	i->insert(2.0f, 2.5f);
+	i->get(1.0f);
+	i->insert(3.0f, 3.5f);*/
+	
+	/*CMap<bool>* i = new CMap<bool>();
+	i->insert(true, false);
+	i->get(true);*/
+
+	/*CMap<double>* i = new CMap<double>();
+	i->insert(1.0f, 1.5f);
+	i->insert(2.0f, 2.5f);
+	i->get(1.0f);
+	i->insert(3.0f, 3.5f);*/
+	
+	CMap<int, float>* i = new CMap<int, float>();
+	i->insert(1, 1);
+	i->insert(3, 4);
+	//i->get("toby");
+	i->insert(5, 6);
+	//i->get(3);
+
+	//i->demo();
+
+	i->display();
+
+	i->remove(5);
+
+	i->display();
+
+	delete i;
+
+
+
+	/*i = new CMap<char, int>();
+
+	CMap<char, int>* a = new CMap<char, int>();
+	a->insert(2, 3);
+	a->get(2);*/
+
+	/*for (int a = 0; a < 10; a++) {
+		i->insert(a, 15);
+	}*/
 	
 
 	//create a array class 
