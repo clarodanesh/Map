@@ -10,7 +10,7 @@ public:
 	int sizeOfArray;
 	struct MapElements {
 		I key;
-		I value;
+		C value;
 	};
 	MapElements *mapElements;
 	void insert(I key, I value);
@@ -24,7 +24,7 @@ public:
 template <typename I, typename C>
 CMap<I, C>::CMap() {
 	arrIdx = 0;
-	mapElements = new MapElements[3];
+	mapElements = new MapElements[1];
 	sizeOfArray = 0;
 	//arrayBuilder(mapElements, 10, 10);
 }
@@ -42,8 +42,8 @@ void CMap<I, A>::arrayBuilder(MapElements *arr, int size, int newSize) {
 		}
 		else // if(i >= size && i < newSize) //Wait a sec, this "if" is superfluous. It's conditions are enforced the the first if and the loop condition.
 		{
-			tmp[i].key = 10;
-			tmp[i].value = 2.0f;
+			tmp[i].key = NULL;
+			tmp[i].value = NULL;
 		}
 	}
 
@@ -58,9 +58,10 @@ void CMap<I, C>::insert(I key, I value) {
 			return;
 		}
 	}
+	arrayBuilder(mapElements, sizeOfArray, sizeOfArray + 1);
+	sizeOfArray = sizeOfArray + 1;
 	mapElements[arrIdx].key = key;
 	mapElements[arrIdx].value = value;
-	sizeOfArray = sizeOfArray + 1;
 	arrIdx++;
 }
 
@@ -74,16 +75,23 @@ void CMap<I, C>::get(I key) {
 template <typename I, typename A>
 void CMap<I, A>::remove(I key) {
 	MapElements *tmp = new MapElements[sizeOfArray - 1];
+	int pos = 0;
 
 	for (int i = 0; i < sizeOfArray; i++)
 	{
 		if (key != mapElements[i].key)
 		{
-			tmp[i].key = mapElements[i].key;
-			tmp[i].value = mapElements[i].value;
+			tmp[pos].key = mapElements[i].key;
+			tmp[pos].value = mapElements[i].value;
+			pos++;
+		}
+		else {
+			pos++;
+			pos = pos - 1;
 		}
 	}
 	sizeOfArray = sizeOfArray - 1;
+	arrIdx = arrIdx - 1;
 	mapElements = tmp;
 }
 
@@ -106,6 +114,7 @@ void CMap<I, C>::display() {
 		cout << mapElements[i].value;
 		cout << endl << endl;
 	}
+	cout << "ended array" << endl << endl << endl;
 }
 
 

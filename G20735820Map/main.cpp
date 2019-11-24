@@ -125,13 +125,51 @@ int main() {
 
 	i->display();
 
-	i->remove(5);
+	i->remove(3);
+
+	i->display();
+
+	i->remove(1);
+
+	i->display();
+
+	i->insert(20, 6);
+
+	i->insert(8, 19);
+
+	i->display();
+
+	i->insert(135, 20);
+
+	i->insert(27, 8);
+
+	i->insert(270, 19);
+
+	i->insert(271, 19);
+
+	i->display();
+
+	i->remove(135);
+
+	i->insert(500, 2.0f);
+
+	i->remove(270);
+
+	i->display();
+
+	i->insert(500, 500);
 
 	i->display();
 
 	delete i;
 
+	CMap<int, char>* a = new CMap<int, char>();
 
+	a->display();
+
+	a->insert(500, 'y');
+
+	a->display();
 
 	/*i = new CMap<char, int>();
 
