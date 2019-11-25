@@ -116,9 +116,29 @@ int main() {
 	
 	CMap<int, float>* i = new CMap<int, float>();
 	i->insert(1, 1);
-	i->insert(3, 4);
+	i->insert(2, 2);
 	//i->get("toby");
-	i->insert(5, 6);
+	i->insert(3, 3);
+	i->insert(4, 4);
+	i->insert(5, 5);
+	i->insert(6, 6);
+	i->insert(7, 7);
+	i->insert(8, 8);
+	i->insert(9, 9);
+	i->insert(10, 10);
+	i->insert(11, 11);
+	i->insert(12, 12);
+	i->insert(13, 13);
+	i->insert(15, 15);
+	i->insert(16, 11);
+	i->insert(17, 11);
+	i->insert(18, 11);
+	i->insert(19, 11);
+	i->insert(20, 11);
+	i->insert(21, 11);
+	i->insert(22, 11);
+
+	i->size();
 	//i->get(3);
 
 	//i->demo();
@@ -161,6 +181,10 @@ int main() {
 
 	i->display();
 
+	i->size();
+
+	i->get(271);
+
 	delete i;
 
 	CMap<int, char>* a = new CMap<int, char>();
@@ -168,6 +192,22 @@ int main() {
 	a->display();
 
 	a->insert(500, 'y');
+
+	a->display();
+
+	a->remove(500);
+
+	a->insert(27, 'D');
+
+	a->display();
+
+	a->remove(900);
+
+	a->remove(27);
+
+	a->display();
+
+	a->insert(83, 'l');
 
 	a->display();
 
