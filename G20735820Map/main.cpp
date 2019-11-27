@@ -1,42 +1,11 @@
 #include <iostream>
 #include "CMap.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 using namespace std;
-
-template<class I, class O>
-O check(I firster, I laster, O resulter)
-{
-	while (firster != laster) {
-		*resulter = *firster;
-		++resulter; ++firster;
-	}
-	return resulter;
-}
-
-template <typename j>
-struct mapEl{
-	j key;
-	j val;
-};
-
-template<typename ft, typename st>
-class aElement {
-public:
-	ft key;
-	st value;
-
-	aElement(ft aKey, st aValue) {
-		key = aKey;
-		value = aValue;
-		cout << key;
-		cout << value;
-	}
-};
-
-void hello() {
-	cout << "hello" << endl;
-}
-
 
 int main() {
 	/*CMap<string>* i = new CMap<string>();
@@ -48,31 +17,25 @@ int main() {
 
 	/*int newsize = 10;
 	int *myints = new int[1];
-
 	myints[0] = 2;
-
 	int *newarray = new int[newsize];
 	check(myints, myints + 1, newarray);
 	delete[] myints;
 	myints = newarray;
-
 	for (int i = 0; i < 12; i++) {
-		myints[i] = i;
-		int p = *(myints + i);
+	myints[i] = i;
+	int p = *(myints + i);
 	}
-
 	for (int i = 0; i < 12; i++) {
-		int c = *(myints + i);
-			cout << c << ", ";
+	int c = *(myints + i);
+	cout << c << ", ";
 	}*/
 	//cout << *myints;
 
 	//Element<key<int>, value<char>> * newEl;
 
 	/*CArray<Element<int, char>> * arr;
-
 	auto * check = new Element<int, int>(10, 10);
-
 	cout << endl << endl;
 	cout << check->key;*/
 
@@ -81,9 +44,8 @@ int main() {
 	i->insert(2, 2);
 	i->get(1);
 	i->insert(3, 3);
-
 	for (int a = 0; a < 10; a++) {
-		i->insert(a, 15);
+	i->insert(a, 15);
 	}*/
 
 	/*CMap<string>* i = new CMap<string>();
@@ -103,7 +65,7 @@ int main() {
 	i->insert(2.0f, 2.5f);
 	i->get(1.0f);
 	i->insert(3.0f, 3.5f);*/
-	
+
 	/*CMap<bool>* i = new CMap<bool>();
 	i->insert(true, false);
 	i->get(true);*/
@@ -113,51 +75,22 @@ int main() {
 	i->insert(2.0f, 2.5f);
 	i->get(1.0f);
 	i->insert(3.0f, 3.5f);*/
-	
+
 	CMap<int, float>* i = new CMap<int, float>();
 	i->insert(1, 1);
 	i->insert(2, 2);
-	//i->get("toby");
-	i->insert(3, 3);
-	i->insert(4, 4);
-	i->insert(5, 5);
-	i->insert(6, 6);
-	i->insert(7, 7);
-	i->insert(8, 8);
-	i->insert(9, 9);
-	i->insert(10, 10);
-	i->insert(11, 11);
-	i->insert(12, 12);
-	i->insert(13, 13);
-	i->insert(15, 15);
-	i->insert(16, 11);
-	i->insert(17, 11);
-	i->insert(18, 11);
-	i->insert(19, 11);
-	i->insert(20, 11);
-	i->insert(21, 11);
-	i->insert(22, 11);
 
-	i->size();
-	//i->get(3);
+	i->insert(3, 3);
+
+	//i->size();
+
 
 	//i->demo();
-
-	i->display();
-
-	i->remove(3);
-
-	i->display();
-
-	i->remove(1);
-
-	i->display();
 
 	i->insert(20, 6);
 
 	i->insert(8, 19);
 
-	i->display();
 
 	i->insert(135, 20);
 
@@ -167,33 +100,55 @@ int main() {
 
 	i->insert(271, 19);
 
-	i->display();
-
-	i->remove(135);
-
 	i->insert(500, 2.0f);
 
-	i->remove(270);
+	//i->insert(600, 2.0f);
+
+	i->insert(100, 1);
+	i->insert(200, 2);
+
+	i->insert(300, 3);
+
+	//i->size();
+
+
+	//i->demo();
+
+	i->insert(400, 6);
+
+	i->insert(600, 19);
+
+
+	i->insert(700, 20);
+
+	i->insert(800, 8);
+
+	i->insert(900, 19);
+
+	i->insert(1000, 19);
+
+	i->insert(1100, 2.0f);
+
+	i->remove(1100);
 
 	i->display();
 
-	i->insert(500, 500);
 
-	i->display();
+	/*i->display();
 
 	i->size();
 
-	i->get(271);
+	i->get(271);*/
 
 	delete i;
 
 	CMap<int, char>* a = new CMap<int, char>();
 
-	a->display();
+	//a->display();
 
 	a->insert(500, 'y');
 
-	a->display();
+	/*a->display();
 
 	a->remove(500);
 
@@ -209,23 +164,56 @@ int main() {
 
 	a->insert(83, 'l');
 
-	a->display();
+	a->display();*/
+
+	delete a;
+
+	/*int* g = new int[2];
+	int* c = new int[2];
+
+	g[0] = 1;
+	g[1] = 2;
+
+	
+
+	c = g;
+	cout << "c " << c[0] << endl;
+	cout << "g " << g[0] << endl;
+	g = NULL;
+	delete[]g;
+	cout << "c " << c[0] << endl;
+	cout << c[1] << endl;
+	cout << g << endl;
+	delete[]c;*/
+
+	
+
+
+	cout << "memory leak " << _CrtDumpMemoryLeaks();
+
+
+
+	// ########### NOT ADDING NULL ELEMENTS BACK TO THE ARRAY WHEN REMOVING, THIS CAUSES THE ARRAY TO BE FILLED WITH EMPTY HOLES AND THE CHECK FOR NULL IN ISFULL IS FAILING.
+
+
+
+
+
 
 	/*i = new CMap<char, int>();
-
 	CMap<char, int>* a = new CMap<char, int>();
 	a->insert(2, 3);
 	a->get(2);*/
 
 	/*for (int a = 0; a < 10; a++) {
-		i->insert(a, 15);
+	i->insert(a, 15);
 	}*/
-	
+
 
 	//create a array class 
-		//this class handles everything to do with the array
-		//access by arr.arr[0]
-		//create that as template and its data type is the element we pass into it
+	//this class handles everything to do with the array
+	//access by arr.arr[0]
+	//create that as template and its data type is the element we pass into it
 
 	system("pause");
 }

@@ -14,16 +14,18 @@ public:
 		C value;
 	};
 	MapElements *mapElements;
+	MapElements *tmp;
 	void insert(I key, C value);
 	void get(I key);
-	void demo();
 	bool keyExists(I key);
 	void arrayBuilder(MapElements *arr, int size, int newSize);
+	void arraySmaller(MapElements *arr, int size, int newSize, I key);
 	void remove(I key);
 	bool isFull();
 	int size();
 	bool isEmpty();
 	void display();
+	~CMap();
 };
 
 template <typename I, typename C>
@@ -40,9 +42,14 @@ CMap<I, C>::CMap() {
 	cout << "Constructing Map of Size 10 with Null elements" << endl;
 }
 
-template <typename I, typename A>
-void CMap<I, A>::arrayBuilder(MapElements *arr, int size, int newSize) {
-	MapElements *tmp = new MapElements[newSize];
+template<typename I, typename C>
+CMap<I, C>::~CMap() {
+	delete[]mapElements;
+}
+
+template <typename I, typename C>
+void CMap<I, C>::arrayBuilder(MapElements *arr, int size, int newSize) {
+	tmp = new MapElements[newSize];
 
 	for (int i = 0; i < newSize; i++)
 	{
@@ -59,12 +66,44 @@ void CMap<I, A>::arrayBuilder(MapElements *arr, int size, int newSize) {
 	}
 	sizeOfArrayAndNull = newSize;
 	mapElements = tmp;
+
+
+	//THIS ONE LINE FIXES THE MEMORY LEAK ISSUE
+	delete[] arr;
+}
+
+template <typename I, typename C>
+void CMap<I, C>::arraySmaller(MapElements *arr, int size, int newSize, I key) {
+	tmp = new MapElements[newSize];
+	int pos = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (key != arr[i].key)
+		{
+			tmp[pos].key = arr[i].key;
+			tmp[pos].value = arr[i].value;
+			pos++;
+		}
+		else {
+			//JUST ENTERED THIS AND CHECK IT
+			cout << "removing (key: " << key << " with value " << arr[i].value << ")" << endl;
+			pos++;
+			pos = pos - 1;
+		}
+	}
+	//sizeOfArrayAndNull = newSize;
+	mapElements = tmp;
+
+
+	//THIS ONE LINE FIXES THE MEMORY LEAK ISSUE
+	delete[] arr;
 }
 
 template <typename I, typename C>
 void CMap<I, C>::insert(I key, C value) {
 	for (int i = 0; i < sizeOfArray; i++) {
-		if(mapElements[i].key == key){
+		if (mapElements[i].key == key) {
 			mapElements[i].value = value;
 			cout << "Key " << key << " already exists, replacing the value with " << value << endl;
 			return;
@@ -90,33 +129,24 @@ void CMap<I, C>::get(I key) {
 	}
 }
 
+//WHEN DOING THE REMOVE, NOT ADDING NULL ELEMENTS BACK INTO THE ARRAY, NEED TO ADD NULL ELEMENTS BACK IN SO WE CAN DO NULL CHECKS FOR WHEN FULL  
+
+//ARRAY WHEN REMOVING FROM FIRST TIME IS LEAVING A BROKEN ELEMENT INSIDE THE ARRAY, NEED TO REMOVE THAT ELEMENT TO HAVE A CHANCE
 template <typename I, typename A>
 void CMap<I, A>::remove(I key) {
 	if (!isEmpty()) {
 		if (keyExists(key)) {
 			//check if the key exists before trying to remove
-			MapElements *tmp = new MapElements[sizeOfArray - 1];
-			int pos = 0;
+			arraySmaller(mapElements, sizeOfArray, sizeOfArray - 1, key);
 
-			for (int i = 0; i < sizeOfArray; i++)
-			{
-				if (key != mapElements[i].key)
-				{
-					tmp[pos].key = mapElements[i].key;
-					tmp[pos].value = mapElements[i].value;
-					pos++;
-				}
-				else {
-					//JUST ENTERED THIS AND CHECK IT
-					cout << "removing (key: " << key << " with value " << mapElements[i].value << ")" << endl;
-					pos++;
-					pos = pos - 1;
-				}
-			}
+			//AFTER DarECREMENTING THE SIZE OF THE ARRAY AND NULL VALUES
+			//THE REST OF THE ARRAY NEEDS TO BE FILLED WITH NULL VALUES
+			//DO THIS ONLY IF THE SIZE OF ARRAY AND NULL VALUES VARIABLE IS LESS THAN THE SIZE OF THE SIZE OF THE ARRAY VARIABLE
+			//AS ONLY WANT TO ADD NULL VALUES IF THE SIZE OF THE ARRAY IS NOT FULL
 			sizeOfArrayAndNull = sizeOfArrayAndNull - 1;
 			sizeOfArray = sizeOfArray - 1;
 			arrIdx = arrIdx - 1;
-			mapElements = tmp;
+			//mapElements = tmp;
 		}
 		else {
 			cout << "Key " << key << " does not exist in the Map" << endl;
@@ -125,18 +155,6 @@ void CMap<I, A>::remove(I key) {
 	else {
 		cout << "map is empty cant remove any more" << endl;
 	}
-}
-
-template<typename I, typename C>
-void CMap<I, C>::demo() {
-	CMap<int, float>* i = new CMap<int, float>();
-	i->insert(1, 1);
-	i->insert(3, 4);
-	//i->get("toby");
-	//i->insert(5, 6);
-	//i->get(3);
-
-	arrayBuilder(mapElements, 3, 4);
 }
 
 template<typename I, typename C>
@@ -150,7 +168,7 @@ void CMap<I, C>::display() {
 }
 
 template<typename I, typename C>
-bool CMap<I, C>::isFull(){
+bool CMap<I, C>::isFull() {
 	if (sizeOfArray > 0) {
 		for (int i = 0; i < sizeOfArrayAndNull; i++) {
 			if (mapElements[i].key == NULL) {
@@ -198,4 +216,3 @@ int CMap<I, C>::size() {
 	cout << "current size of the Map is " << sizeOfArray << endl << endl;
 	return sizeOfArray;
 }
-
