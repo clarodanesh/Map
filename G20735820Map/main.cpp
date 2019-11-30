@@ -183,6 +183,30 @@ int main() {
 
 	q->size();
 
+	q->get('g');
+
+	q->remove('a');
+	q->remove('b');
+	q->remove('c');
+	q->remove('d');
+	q->remove('e');
+	q->remove('f');
+	q->remove('g');
+	q->remove('h');
+	q->remove('i');
+	q->remove('j');
+
+	cout << q->isFull() << endl;
+
+	cout << q->isEmpty() << endl;
+
+	cout << q->keyExists('j') << endl;
+
+	cout << q->keyExists('z') << endl;
+
+
+	q->getkeys();
+
 	q->display();
 
 	delete q;

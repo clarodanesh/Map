@@ -119,7 +119,7 @@ void CMap<I, C>::get(I key) {
 	if (keyExists(key)) {
 		for (int i = 0; i < sizeOfArray; i++)
 			if (mapElements[i].key == key)
-				cout << "CALLED GET" << mapElements[i].value << endl;
+				cout << "Key: " << key << " obtained Value: " << mapElements[i].value << endl;
 	}
 }
 
@@ -147,12 +147,12 @@ void CMap<I, C>::remove(I key) {
 
 template<typename I, typename C>
 void CMap<I, C>::display() {
+	cout << "List of all the Key AND Values in the map" << endl;
 	for (int i = 0; i < sizeOfArray; i++) {
 		cout << mapElements[i].key << "  ";
 		cout << mapElements[i].value;
 		cout << endl << endl;
 	}
-	cout << "ended array" << endl << endl << endl;
 }
 
 template<typename I, typename C>
@@ -160,11 +160,9 @@ bool CMap<I, C>::isFull() {
 	if (sizeOfArray > 0) {
 		for (int i = 0; i < sizeOfArrayAndNull; i++) {
 			if (sizeOfArray < sizeOfArrayAndNull) {
-				cout << "is not full " << endl;
 				return false;
 			}
 		}
-		cout << "is full " << endl;
 		return true;
 	}
 	else {
