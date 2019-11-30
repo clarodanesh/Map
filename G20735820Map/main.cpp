@@ -12,206 +12,197 @@ int main() {
 
 	cout << "G20735820 Map Class Assignment" << endl << endl << endl;
 
-	/*CMap<int, float>* i = new CMap<int, float>();
-	i->insert(1, 1);
-	i->insert(2, 2);
-	i->insert(3, 3);
-	i->insert(20, 6);
-	i->insert(8, 19);
-	i->insert(135, 20);
-	i->insert(27, 8);
-	i->insert(270, 19);
-	i->insert(271, 19);
-	i->insert(500, 2.0f);
-	i->insert(100, 1);
-	i->insert(200, 2);
-	i->insert(300, 3);
-	i->insert(400, 6);
-	i->insert(600, 19);
-	i->insert(700, 20);
-	i->insert(800, 8);
-	i->insert(900, 19);
-	i->insert(1000, 19);
-	i->insert(1100, 2.0f);
+	//Map demonstrating int and float
 
-	for (int c = 0; c < 150; c++) {
-		i->insert(c, 3);
-	}
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
+	cout << "                         Demonstrating int and float Map                          " << endl;
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
 
+	//creating a pointer then requesting memory to hold a CMap class with int float as types
+	CMap<int, float>* ifMap = new CMap<int, float>();
 
+	//demonstrating insert into map
+	ifMap->insert(10, 1.1f);
 
+	ifMap->display();
 
+	//demonstrating map allows only unique keys
+	ifMap->insert(10, 2.1f);
 
-	i->remove(1100);
+	ifMap->display();
 
-	i->getkeys();
+	//demonstrating dynamic size of map (Map is initialised with size of 5 then map size is dynamic)
+	ifMap->insert(20, 2.2f);
+	ifMap->insert(30, 3.3f);
+	ifMap->insert(40, 4.4f);
+	ifMap->insert(50, 5.5f);
+	ifMap->insert(60, 6.6f);
+	ifMap->insert(70, 7.7f);
+	ifMap->insert(80, 8.8f);
+	ifMap->insert(90, 9.9f);
 
-	for (int c = 0; c < 300; c++) {
-		i->remove(c);
-	}
+	ifMap->display();
 
-	i->insert(1, 1);
-	i->insert(2, 2);
-	i->insert(3, 3);
-	i->insert(20, 6);
-	i->insert(8, 19);
-	i->insert(135, 20);
-	i->insert(27, 8);
-	i->insert(270, 19);
-	i->insert(271, 19);
-	i->insert(500, 2.0f);
-	i->insert(100, 1);
-	i->insert(200, 2);
-	i->insert(300, 3);
-	i->insert(400, 6);
-	i->insert(600, 19);
-	i->insert(700, 20);
-	i->insert(800, 8);
-	i->insert(900, 19);
-	i->insert(1000, 19);
-	i->insert(1100, 2.0f);
+	//demonstrating remove function
+	ifMap->remove(60);
+	//this remove function should not work as key 900 should not exist in the map
+	ifMap->remove(900);
+	ifMap->remove(30);
 
-	cout << "size is" << endl;
-	i->size();
+	ifMap->display();
 
-	i->display();
+	//demonstrating get function which displays the value held at this key 
+	ifMap->get(70);
 
-	i->display();
-	
-	i->size();
-	
-	i->get(555324237);
+	//demonstrating size function, returns amount of elements in current map
+	ifMap->size();
 
-	delete i;
+	//demonstrating get keys which will display all keys to console in current map
+	ifMap->getkeys();
 
-	CMap<float, string>* a = new CMap<float, string>();
-	
-	a->insert(1.25, "hello");
-	a->insert(2.25, "hello");
-	a->insert(3.25, "hello");
-	a->insert(4.25, "hello");
-	a->insert(5.25, "hello");
-	a->insert(6.25, "hello");
-	a->insert(7.25, "hello");
-	a->insert(8.25, "hello");
-	a->insert(9.25, "hello");
-	a->insert(10.25, "hello");
-	a->insert(15.25, "hello");
-	a->insert(92.25, "hello");
-	a->insert(101.25, "hello");
-	
-	a->remove(1.25);
-	a->remove(2.25);
-	a->remove(3.25);
-	a->remove(4.25);
-	a->remove(5.25);
-	a->remove(6.25);
-	a->remove(7.25);
-	a->remove(8.25);
-	a->remove(9.25);
-	a->remove(10.25);
+	//checks if map is empty then displays this to screen
+	ifMap->isEmpty();
 
+	delete ifMap;
 
-	a->insert(1.25, "hello");
-	a->insert(2.25, "hello");
-	a->insert(3.25, "hello");
-	a->insert(4.25, "hello");
-	a->insert(5.25, "hello");
-	a->insert(6.25, "hello");
-	a->insert(7.25, "hello");
-	a->insert(8.25, "hello");
-	a->insert(9.25, "hello");
-	a->insert(10.25, "hello");
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl << endl;
 
-	a->remove(1.25);
-	a->remove(2.25);
-	a->remove(3.25);
-	a->remove(4.25);
-	a->remove(5.25);
-	a->remove(6.25);
-	a->remove(7.25);
-	a->remove(8.25);
-	a->remove(9.25);
-	a->remove(10.25);
+	//Map demonstrating string and char
 
-	a->insert(1.25, "hello");
-	a->insert(2.25, "hello");
-	a->insert(3.25, "hello");
-	a->insert(4.25, "hello");
-	a->insert(5.25, "hello");
-	a->insert(6.25, "hello");
-	a->insert(7.25, "hello");
-	a->insert(8.25, "hello");
-	a->insert(9.25, "hello");
-	a->insert(10.25, "hello");
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
+	cout << "                         Demonstrating string and char Map                        " << endl;
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
 
-	a->remove(6.25);
-	a->remove(7.25);
-	a->remove(8.25);
-	a->remove(9.25);
-	a->remove(10.25);
+	CMap<string, char>* scMap = new CMap<string, char>();
 
-	//a->insert(3, "yes");
-	a->get(10.25);
-	a->insert(1, "yeah");
-	a->get(1);	
-	a->size();
-	a->display();
+	scMap->insert("apple", 'a');
 
+	scMap->display();
 
-	delete a;
-	*/
+	scMap->insert("apple", 'b');
 
-	CMap<char, float>* q = new CMap<char, float>();
+	scMap->display();
 
-	q->remove('c');
+	scMap->insert("banana", 'b');
+	scMap->insert("carrot", 'c');
+	scMap->insert("dragonfruit", 'd');
+	scMap->insert("elderberry", 'e');
+	scMap->insert("Fennel", 'f');
+	scMap->insert("grape", 'g');
+	scMap->insert("honeydew", 'h');
+	scMap->insert("iceberg", 'i');
 
-	q->insert('c', 2.5f);
+	scMap->display();
 
-	q->remove('c');
+	scMap->remove("dragonfruit");
+	scMap->remove("garlic");
+	scMap->remove("honeydew");
 
-	q->insert('a', 1.0f);
-	q->insert('b', 1.0f);
-	q->insert('c', 1.0f);
-	q->insert('d', 1.0f);
-	q->insert('e', 1.0f);
-	q->insert('f', 1.0f);
-	q->insert('g', 1.0f);
-	q->insert('h', 1.0f);
-	q->insert('i', 1.0f);
-	q->insert('j', 1.0f);
+	scMap->display();
 
-	q->size();
+	scMap->get("elderberry");
 
-	q->get('g');
+	scMap->size();
 
-	q->remove('a');
-	q->remove('b');
-	q->remove('c');
-	q->remove('d');
-	q->remove('e');
-	q->remove('f');
-	q->remove('g');
-	q->remove('h');
-	q->remove('i');
-	q->remove('j');
+	scMap->getkeys();
 
-	cout << q->isFull() << endl;
+	scMap->isEmpty();
 
-	cout << q->isEmpty() << endl;
+	delete scMap;
 
-	cout << q->keyExists('j') << endl;
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl << endl;
 
-	cout << q->keyExists('z') << endl;
+	//map demonstrating float and string
 
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
+	cout << "                         Demonstrating float and string Map                        " << endl;
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
 
-	q->getkeys();
+	CMap<float, string>* fsMap = new CMap<float, string>();
 
-	q->display();
+	fsMap->insert(1.1f, "hello");
 
-	delete q;
+	fsMap->display();
 
-	cout << "memory leak " << _CrtDumpMemoryLeaks();
+	fsMap->insert(1.1f, "test");
+
+	fsMap->display();
+
+	fsMap->insert(2.3f, "yes");
+	fsMap->insert(3.4f, "testing");
+	fsMap->insert(4.3f, "could");
+	fsMap->insert(5.4f, "should");
+	fsMap->insert(6.5f, "would");
+	fsMap->insert(7.6f, "always");
+	fsMap->insert(8.1f, "never");
+	fsMap->insert(9.5f, "very");
+
+	fsMap->display();
+
+	fsMap->remove(3.4f);
+	fsMap->remove(35.2f);
+	fsMap->remove(7.6f);
+
+	fsMap->display();
+
+	fsMap->get(6.5f);
+
+	fsMap->size();
+
+	fsMap->getkeys();
+
+	fsMap->isEmpty();
+
+	delete fsMap;
+
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl << endl;
+
+	//map demonstrating char and int
+
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
+	cout << "                         Demonstrating char and int Map                        " << endl;
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl;
+
+	CMap<char, int>* ciMap = new CMap<char, int>();
+
+	ciMap->insert('a', 1);
+
+	ciMap->display();
+
+	ciMap->insert('a', 2);
+
+	ciMap->display();
+
+	ciMap->insert('b', 3);
+	ciMap->insert('c', 4);
+	ciMap->insert('d', 5);
+	ciMap->insert('e', 6);
+	ciMap->insert('f', 7);
+	ciMap->insert('g', 8);
+	ciMap->insert('h', 9);
+	ciMap->insert('i', 10);
+
+	ciMap->display();
+
+	ciMap->remove('d');
+	ciMap->remove('q');
+	ciMap->remove('h');
+
+	ciMap->display();
+
+	ciMap->get('f');
+
+	ciMap->size();
+
+	ciMap->getkeys();
+
+	ciMap->isEmpty();
+
+	delete ciMap;
+
+	cout << "//////////////////////////////////////////////////////////////////////////////////" << endl << endl;
+
+	cout << "Memory Leaks: " << _CrtDumpMemoryLeaks() << endl << endl;
 
 	system("pause");
 }
